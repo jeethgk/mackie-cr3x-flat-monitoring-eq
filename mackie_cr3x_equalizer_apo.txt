@@ -1,0 +1,11 @@
+# Mackie CR3 / CR3-X Flat Monitoring EQ (REW / Equalizer APO Format)
+# Derived from Klippel NFS Anechoic Measurements (Erin's Audio Corner / Spinorama)
+# All filters are negative gain (cuts), preserving maximum dynamic headroom.
+
+Preamp: 0.0 dB
+Filter 1: ON PK Fc 94.9 Hz Gain -8.5 dB Q 2.001
+Filter 2: ON PK Fc 147.5 Hz Gain -4.7 dB Q 2.000
+Filter 3: ON PK Fc 2090 Hz Gain -4.4 dB Q 1.087
+Filter 4: ON PK Fc 3779 Hz Gain -2.8 dB Q 4.671
+Filter 5: ON PK Fc 10212 Hz Gain -7.6 dB Q 1.054
+Filter 6: ON PK Fc 16105 Hz Gain -8.9 dB Q 2.323

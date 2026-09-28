@@ -1,0 +1,78 @@
+devices:
+  samplerate: 44100
+  chunksize: 1024
+  queuelimit: 4
+  enable_rate_adjust: true
+  resampler:
+    type: AsyncPoly
+    interpolation: Cubic
+  capture:
+    type: CoreAudio
+    channels: 2
+    device: "BlackHole 2ch"
+  playback:
+    type: CoreAudio
+    channels: 2
+    device: "USB AUDIO  CODEC"
+
+filters:
+  mackie_pk1:
+    type: Biquad
+    parameters:
+      type: Peaking
+      freq: 94.9
+      q: 2.001
+      gain: -8.5
+
+  mackie_pk2:
+    type: Biquad
+    parameters:
+      type: Peaking
+      freq: 147.5
+      q: 2.000
+      gain: -4.7
+
+  mackie_pk3:
+    type: Biquad
+    parameters:
+      type: Peaking
+      freq: 2090.0
+      q: 1.087
+      gain: -4.4
+
+  mackie_pk4:
+    type: Biquad
+    parameters:
+      type: Peaking
+      freq: 3779.0
+      q: 4.671
+      gain: -2.8
+
+  mackie_pk5:
+    type: Biquad
+    parameters:
+      type: Peaking
+      freq: 10212.0
+      q: 1.054
+      gain: -7.6
+
+  mackie_pk6:
+    type: Biquad
+    parameters:
+      type: Peaking
+      freq: 16105.0
+      q: 2.323
+      gain: -8.9
+
+pipeline:
+  - type: Filter
+    channels:
+      - 0
+      - 1
+    names:
+      - mackie_pk1
+      - mackie_pk2
+      - mackie_pk3
+      - mackie_pk4
+      - mackie_pk5
+      - mackie_pk6

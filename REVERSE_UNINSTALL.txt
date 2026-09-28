@@ -1,0 +1,44 @@
+================================================================================
+MACKIE CR3-X SYSTEM-WIDE EQ: COMPLETE REVERSAL & UNINSTALL GUIDE
+================================================================================
+
+If you ever want to completely remove CamillaDSP, BlackHole, and the background
+service, running these commands will return your Mac 100% back to factory state.
+Nothing permanent is ever touched on your Mac OS system files.
+
+--------------------------------------------------------------------------------
+OPTION 1: THE 1-LINE UNINSTALL SCRIPT (EASIEST)
+--------------------------------------------------------------------------------
+Run this single command in Terminal:
+
+  bash /Users/jeethgokani/mackie-cr3x-flat-monitoring-eq/uninstall.sh
+
+
+--------------------------------------------------------------------------------
+OPTION 2: MANUAL STEP-BY-STEP TERMINAL COMMANDS
+--------------------------------------------------------------------------------
+If you prefer to run the commands manually one by one, copy and paste these:
+
+1. Stop and remove the CamillaDSP background service:
+   launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.camilladsp.mackie.plist 2>/dev/null
+   rm -f ~/Library/LaunchAgents/com.camilladsp.mackie.plist
+
+2. Remove the CamillaDSP executable and logs:
+   rm -f ~/mackie-cr3x-flat-monitoring-eq/camilladsp
+   rm -f ~/mackie-cr3x-flat-monitoring-eq/camilladsp.log
+
+3. Remove the BlackHole virtual audio driver:
+   sudo rm -rf /Library/Audio/Plug-Ins/HAL/BlackHole2ch.driver
+
+4. Restart macOS CoreAudio to apply (instantly removes BlackHole from Sound menu):
+   sudo launchctl kickstart -kp system/com.apple.audio.coreaudiod
+
+--------------------------------------------------------------------------------
+VERIFICATION
+--------------------------------------------------------------------------------
+After running the above:
+- Open System Settings -> Sound.
+- "BlackHole" will be completely gone.
+- Only "USB AUDIO CODEC" (M-Audio) and "MacBook Air Speakers" will remain.
+- Your Mac is 100% back to factory state.
+================================================================================
